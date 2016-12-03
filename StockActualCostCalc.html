@@ -1,0 +1,104 @@
+<html>
+<head>
+<script src="Clicks.js"></script>
+<script src="phonegap.js"></script>    
+<script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
+<script type="text/javascript" charset="utf-8">
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() 
+{
+    // Register the event listener
+    document.addEventListener("backbutton", onBackKeyDown, false);
+}
+// Handle the back button
+function onBackKeyDown() 
+{
+	//logout();
+	window.location = 'index.html';
+}
+</script>
+</head>
+<body>
+<script>
+function GetActualRate()
+{
+	var STTSellPerc = window.localStorage.getItem("STTSellPerc");
+	if(STTSellPerc === null)
+		STTSellPerc = parseFloat(0.125);
+	else
+		STTSellPerc = parseFloat(STTSellPerc);
+		
+	STTSellPerc = STTSellPerc/100;
+	
+	var STTBuyPerc = window.localStorage.getItem("STTBuyPerc");
+	if(STTBuyPerc === null)
+		STTBuyPerc = parseFloat(0);
+	else
+		STTBuyPerc = parseFloat(STTBuyPerc);
+	
+	STTBuyPerc = STTBuyPerc/100;
+
+	var Brokerage = window.localStorage.getItem("Brokerage");
+	if(Brokerage === null)
+		Brokerage = parseFloat(460);
+	else
+		Brokerage = parseFloat(Brokerage);
+	
+	var SEBITrnsBuyPerc = window.localStorage.getItem("SEBITrnsBuyPerc");
+	if(SEBITrnsBuyPerc === null)
+		SEBITrnsBuyPerc = parseFloat(0.0002);
+	else
+		SEBITrnsBuyPerc = parseFloat(SEBITrnsBuyPerc);
+	
+	SEBITrnsBuyPerc= SEBITrnsBuyPerc/100;
+	
+	var SEBITrnsSellPerc = window.localStorage.getItem("SEBITrnsSellPerc");
+	if(SEBITrnsSellPerc === null)
+		SEBITrnsSellPerc = parseFloat(0.0002);
+	else
+		SEBITrnsSellPerc = parseFloat(SEBITrnsSellPerc);
+	
+	SEBITrnsSellPerc = SEBITrnsSellPerc/100;
+		
+	var OtherChargesBuyPerc = window.localStorage.getItem("OtherChargesBuyPerc");
+	if(OtherChargesBuyPerc === null)
+		OtherChargesBuyPerc = parseFloat(0);
+	else
+		OtherChargesBuyPerc = parseFloat(OtherChargesBuyPerc);
+	
+	OtherChargesBuyPerc = OtherChargesBuyPerc/100;
+	
+	var OtherChargesSellPerc = window.localStorage.getItem("OtherChargesSellPerc");
+	if(OtherChargesSellPerc === null)
+		OtherChargesSellPerc = parseFloat(0);
+	else
+		OtherChargesSellPerc = parseFloat(OtherChargesSellPerc);
+		
+	OtherChargesSellPerc = OtherChargesSellPerc/100;
+	
+	var CallRate = parseFloat(document.getElementById('CallRate').value);
+	var PutRate = parseFloat(document.getElementById('PutRate').value);
+	var Quantity = parseFloat(document.getElementById('Quantity').value);
+	var CombinedBuyValue = CallRate + PutRate;
+	var ActualCombinedRate = (CombinedBuyValue + (Brokerage/Quantity) + (STTBuyPerc * CombinedBuyValue) + (SEBITrnsBuyPerc * CombinedBuyValue) + (OtherChargesBuyPerc * CombinedBuyValue))/(1-(STTSellPerc+SEBITrnsSellPerc+OtherChargesSellPerc));
+	var InvestmentValue = (CombinedBuyValue * Quantity) + Brokerage + (STTBuyPerc * CombinedBuyValue) + (SEBITrnsBuyPerc * CombinedBuyValue) + (OtherChargesBuyPerc * CombinedBuyValue);
+	document.getElementById('CombinedValue').value = ActualCombinedRate;
+	document.getElementById('InvestmentValue').value = InvestmentValue;
+}
+</script>
+<p>Call Rate:</p>
+<input id = 'CallRate' type = "Number" value = '0'/>
+<p>Put  Rate:</p>
+<input id = 'PutRate' type = "Number" value = '0'/>
+<p>Quantity:</p>
+<input id = 'Quantity' type = "Number" value = '0'/>
+<br/><br/>
+<input type = 'button' onclick = 'GetActualRate()' value = 'Get Actual Rate'></input>
+<p>Combined Actual Rate:</p>
+<input id = 'CombinedValue' type = "Text" readonly = 'true' />
+<p>Value Invested:</p>
+<input id = 'InvestmentValue' type = "Text" readonly = 'true' />
+<br/>
+<input type = 'button' onclick = 'onBackKeyDown()' value = 'Back'></input>
+</body>
+</html>

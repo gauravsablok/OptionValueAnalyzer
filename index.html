@@ -1,0 +1,40 @@
+<html>
+<head>
+<script src="Clicks.js"></script>
+<script src="phonegap.js"></script>    
+<script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
+<script type="text/javascript" charset="utf-8">
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() 
+{
+    // Register the event listener
+    document.addEventListener("backbutton", onBackKeyDown, false);
+}
+// Handle the back button
+function onBackKeyDown() 
+{
+	//logout();
+	if (confirm("Exit App") == true) 
+	{
+		navigator.app.exitApp();
+	}	
+}
+function ActualCost()
+{
+	window.location = 'StockActualCostCalc.html';
+}
+function UpdateSetting()
+{
+	window.location = 'SetParameterValues.html';
+}
+</script>
+</head>
+<body>
+<br/><br/><br/>
+<input type = 'Button' value = 'Calculate Actual Cost' onclick = 'ActualCost()' />
+<br/><br/><br/>
+<input type = 'Button' value = 'Parameter Values' onclick = 'UpdateSetting()' />
+<br/><br/><br/>
+<input type = "button" onclick = "onBackKeyDown()" value ='Logout'/>
+</body>
+</html>

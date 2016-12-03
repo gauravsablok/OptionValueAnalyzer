@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.SablokEnt.CalculateSPOption"
+    versionCode = "10"
+    version     = "1.0.1" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>Option Value Calculator</name>
+
+    <description>
+      Calculate the minimum profitable selling price of a option by including Indian taxes in it. Options are always to be for Straddle strategy 
+	i.e. buying both Put and Call options simultaneously. Mostly made for personal use.
+    </description>
+
+    <author href="https://plus.google.com/102568059178551469997/auto" email="gauravsblk@gmail.com">
+      Gaurav Sablok
+    </author>
+
+	<gap:platform name="android" />
+	
+    <platform name="android">
+              <icon src="icon.png" />
+			  <icon src="icon.png" density="ldpi" />
+              <icon src="icon.png" density="mdpi" />
+              <icon src="icon.png" density="hdpi" />
+              <icon src="icon.png" density="xhdpi" />
+     </platform>
+
+	<platform name="android">
+		<splash src="splash.png" />
+		<splash src="ldpi.png" density="ldpi" />
+		<splash src="mdpi.png" density="mdpi" />
+		<splash src="hdpi.png" density="hdpi" />
+		<splash src="xhdpi.png" density="xhdpi" />
+		<splash src="xxhdpi.png" density="xxhdpi" />
+		<splash src="xxxhdpi.png" density="xxxhdpi" />
+	</platform>
+	 
+	 <preference name="orientation" value="portrait" />
+	<!-- <preference name="SplashScreen" value="splash.png" />-->
+	 <preference name="SplashScreenDelay" value="2500"/> 
+	 <preference name="android-minSdkVersion" value="16" />
+	 <preference name="AutoHideSplashScreen" value="false" />
+	 <preference name="FadeSplashScreen" value="true"/>
+	 <preference name="FadeSplashScreenDuration" value="1000"/>
+	 <preference name="SplashMaintainAspectRatio" value="true" />
+	 <preference name="SplashShowOnlyFirstTime" value="false" />
+	 
+
+    <!-- Plugins -->
+    <!--<plugin name="Storage" value="org.apache.cordova.Storage" />-->
+	<plugin name="cordova-plugin-splashscreen" spec="2.1.0" source="pgb" />
+</widget>

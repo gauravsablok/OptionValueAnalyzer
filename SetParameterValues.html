@@ -1,0 +1,121 @@
+<html>
+<head>
+<script src="Clicks.js"></script>
+<script src="phonegap.js"></script>    
+<script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
+<script type="text/javascript" charset="utf-8">
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() 
+{
+    // Register the event listener
+    document.addEventListener("backbutton", onBackKeyDown, false);
+}
+// Handle the back button
+function onBackKeyDown() 
+{
+	window.location = 'index.html';
+}
+function Save()
+{
+	
+	var STTSellPerc = document.getElementById('STTSellPerc').value;
+	window.localStorage.setItem("STTSellPerc", STTSellPerc);
+	
+	var STTBuyPerc = document.getElementById('STTBuyPerc').value;
+	window.localStorage.setItem("STTBuyPerc", STTBuyPerc);
+	
+	var Brokerage = document.getElementById('Brokerage').value;
+	window.localStorage.setItem("Brokerage", Brokerage);
+	
+	var SEBITrnsBuyPerc = document.getElementById('SEBITrnsBuyPerc').value;
+	window.localStorage.setItem("SEBITrnsBuyPerc", SEBITrnsBuyPerc);
+	
+	var SEBITrnsSellPerc = document.getElementById('SEBITrnsSellPerc').value;
+	window.localStorage.setItem("SEBITrnsSellPerc", SEBITrnsSellPerc);
+	
+	var OtherChargesBuyPerc = document.getElementById('OtherChargesBuyPerc').value;
+	window.localStorage.setItem("OtherChargesBuyPerc", OtherChargesBuyPerc);
+	
+	var OtherChargesSellPerc = document.getElementById('OtherChargesSellPerc').value;
+	window.localStorage.setItem("OtherChargesSellPerc", OtherChargesSellPerc);
+	
+	alert('Parameters Updated');
+}
+function PrefillValues()
+{
+	var STTSellPerc = window.localStorage.getItem("STTSellPerc");
+	if(STTSellPerc === null)
+		STTSellPerc = parseFloat(0.125);
+	else
+		STTSellPerc = parseFloat(STTSellPerc);
+	document.getElementById('STTSellPerc').value = STTSellPerc;
+	
+	var STTBuyPerc = window.localStorage.getItem("STTBuyPerc");
+	if(STTBuyPerc === null)
+		STTBuyPerc = parseFloat(0);
+	else
+		STTBuyPerc = parseFloat(STTBuyPerc);
+	document.getElementById('STTBuyPerc').value = STTBuyPerc;
+
+	var Brokerage = window.localStorage.getItem("Brokerage");
+	if(Brokerage === null)
+		Brokerage = parseFloat(460);
+	else
+		Brokerage = parseFloat(Brokerage);
+	document.getElementById('Brokerage').value = Brokerage;
+	
+	var SEBITrnsBuyPerc = window.localStorage.getItem("SEBITrnsBuyPerc");
+	if(SEBITrnsBuyPerc === null)
+		SEBITrnsBuyPerc = parseFloat(0.0002);
+	else
+		SEBITrnsBuyPerc = parseFloat(SEBITrnsBuyPerc);
+	document.getElementById('SEBITrnsBuyPerc').value = SEBITrnsBuyPerc;
+	
+	var SEBITrnsSellPerc = window.localStorage.getItem("SEBITrnsSellPerc");
+	if(SEBITrnsSellPerc === null)
+		SEBITrnsSellPerc = parseFloat(0.0002);
+	else
+		SEBITrnsSellPerc = parseFloat(SEBITrnsSellPerc);
+	document.getElementById('SEBITrnsSellPerc').value = SEBITrnsSellPerc;
+		
+	var OtherChargesBuyPerc = window.localStorage.getItem("OtherChargesBuyPerc");
+	if(OtherChargesBuyPerc === null)
+		OtherChargesBuyPerc = parseFloat(0);
+	else
+		OtherChargesBuyPerc = parseFloat(OtherChargesBuyPerc);
+	document.getElementById('OtherChargesBuyPerc').value = OtherChargesBuyPerc;
+	
+	var OtherChargesSellPerc = window.localStorage.getItem("OtherChargesSellPerc");
+	if(OtherChargesSellPerc === null)
+		OtherChargesSellPerc = parseFloat(0);
+	else
+		OtherChargesSellPerc = parseFloat(OtherChargesSellPerc);
+	document.getElementById('OtherChargesSellPerc').value = OtherChargesSellPerc;
+}
+</script>
+</head>
+<body>
+	<p>STTSellPerc:</p>
+	<input id = 'STTSellPerc' type = "Number" value = '0'/>
+	<p>STTBuyPerc:</p>
+	<input id = 'STTBuyPerc' type = "Number" value = '0'/>
+	<p>Brokerage:</p>
+	<input id = 'Brokerage' type = "Number" value = '0'/>
+	<p>SEBITrnsBuyPerc:</p>
+	<input id = 'SEBITrnsBuyPerc' type = "Number" value = '0'/>
+	<p>SEBITrnsSellPerc:</p>
+	<input id = 'SEBITrnsSellPerc' type = "Number" value = '0'/>
+	<p>OtherChargesBuyPerc:</p>
+	<input id = 'OtherChargesBuyPerc' type = "Number" value = '0'/>
+	<p>OtherChargesSellPerc:</p>
+	<input id = 'OtherChargesSellPerc' type = "Number" value = '0'/>
+	
+	<Script>
+		PrefillValues();
+	</script>
+	<br/>
+	<input type = 'button' onclick = 'Save()' value = 'Save'></input>
+	<input type = 'button' onclick = 'onBackKeyDown()' style = 'margin-left:5%;' value = 'Back'></input>
+	
+</body>
+</html>
